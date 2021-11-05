@@ -18,6 +18,8 @@ from django.urls import include,path, re_path
 from Blog import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^$',views.index,name='index'),
+    re_path(r'^$',views.index.as_view(),name='index'),
+    path('<slug:slug>/', views.post_detail, name='post_detail'),
+    path('edit/<slug:slug>/', views.UpdatePostView, name='update_post'),
     path('api/', include('Blog.urls')),
 ]
